@@ -1,0 +1,31 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: anup-aws-efs3
+provisioner: lw-course/aws-efs3
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: anup-efs-wix
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "anup-aws-efs3"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: anup-efs-mysql
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "anup-aws-efs3"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi

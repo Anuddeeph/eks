@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+secretGenerator:
+   - name:  mysql-pass
+     literals:
+          - password=redhat
+resources:
+       - anup-efs-provisioner.yaml
+       - anup-create-rbac.yaml
+       - anup-create-storage.yaml
+       - anup-deploy-mysql.yml
+       - anup-create-deploy-wix.yml
